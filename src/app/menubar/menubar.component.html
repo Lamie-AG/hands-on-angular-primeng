@@ -1,0 +1,15 @@
+<p-menubar [model]="items">
+    <ng-template pTemplate="start">
+      <img src="/assets/images/logo.png" height="40" class="p-mr-2" alt="brand logo">
+    </ng-template>
+    <ng-template pTemplate="end">
+      <div class="container">
+          <span class="p-input-icon-left">
+              <i class="pi pi-search"></i>
+              <input type="text" pInputText placeholder="Global search">         
+          </span>
+          <button pButton icon="pi pi-cog"></button>
+      </div>
+    </ng-template>
+  </p-menubar>
+  

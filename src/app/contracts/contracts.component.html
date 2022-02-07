@@ -1,0 +1,30 @@
+<p-table [value]="contracts" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Device</th>
+            <th>Premium</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Status</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-contract>
+        <tr>
+            <td><a href="">{{contract.device.name}}</a></td>
+            <td>{{contract.premium | currency:'EUR'}}</td>
+            <td>{{contract.customer.firstname}}</td>
+            <td>{{contract.customer.lastname}}</td>
+            <td>
+                <p-messages [severity]="mapStatus(contract.status)">
+                    <ng-template pTemplate>
+                        <b>{{contract.status}}</b>
+                    </ng-template>
+                </p-messages>
+            </td>
+            <td>{{contract.startDate | date:'dd.MM.yyyy'}}</td>
+            <td>{{contract.endDate | date:'dd.MM.yyyy'}}</td>
+        </tr>
+    </ng-template>
+</p-table>
