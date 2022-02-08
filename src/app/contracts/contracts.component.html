@@ -1,10 +1,25 @@
-<p-table [value]="contracts" responsiveLayout="scroll">
-    <ng-template pTemplate="header">
+<p-table [value]="contracts" styleClass="p-datatable-sm" [paginator]="true" [rows]="50" [showCurrentPageReport]="true" 
+[scrollable]="true" scrollHeight="82vh"
+[resizableColumns]="true" columnResizeMode="expand"
+currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+    <ng-template pTemplate="caption">
+        <div id="actionbar">
+            <span>Contracts</span>
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText placeholder="Search contracts">         
+            </span>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" id="table-header">
         <tr>
+            <th>Policy number</th>
             <th>Device</th>
             <th>Premium</th>
-            <th>First name</th>
-            <th>Last name</th>
+            <th>Policyholder</th>
+            <th>Phone</th>
+            <th>IMEI</th>
+            <th>Contracttype</th>
             <th>Status</th>
             <th>Start Date</th>
             <th>End Date</th>
@@ -12,16 +27,17 @@
     </ng-template>
     <ng-template pTemplate="body" let-contract>
         <tr>
+            <td>{{contract.policy}}</td>
             <td><a href="">{{contract.device.name}}</a></td>
             <td>{{contract.premium | currency:'EUR'}}</td>
-            <td>{{contract.customer.firstname}}</td>
-            <td>{{contract.customer.lastname}}</td>
+            <td><a href="">{{contract.customer.name}}</a></td>
+            <td>{{contract.phone}}</td>
+            <td>{{contract.imei}}</td>
+            <td><a href="">{{contract.contractType}}</a></td>
             <td>
-                <p-messages [severity]="mapStatus(contract.status)">
-                    <ng-template pTemplate>
-                        <b>{{contract.status}}</b>
-                    </ng-template>
-                </p-messages>
+                <span [class]="'contract-badge status-' + (contract.status | lowercase)">
+                    {{contract.status}}
+                </span>
             </td>
             <td>{{contract.startDate | date:'dd.MM.yyyy'}}</td>
             <td>{{contract.endDate | date:'dd.MM.yyyy'}}</td>

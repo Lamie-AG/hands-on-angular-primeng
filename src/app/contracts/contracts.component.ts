@@ -9,6 +9,7 @@ import { faker } from '@faker-js/faker';
 })
 export class ContractsComponent implements OnInit {
   contracts: Array<Contract> = [];
+  tableHeight = window.innerHeight-150; // todo: improve height
 
   constructor() { }
 
@@ -19,30 +20,23 @@ export class ContractsComponent implements OnInit {
     console.table(this.contracts);
   }
 
-  mapStatus(status: "OnRisk" | "Cancelled"): string {
-    switch (status) {
-      case "OnRisk":
-        return "warn";
-      case "Cancelled":
-        return "error";
-      default:
-        return "info";
-    }
-  }
-
   fakeContract(): Contract {
     return {
-      status: faker.random.arrayElement(["OnRisk", "Cancelled"]),
+      status: faker.random.arrayElement(["OnRisk", "Cancelled", "NTU", "Declined"]),
       premium: faker.random.arrayElement([2.99, 4.99, 8.99, 11.99, 12.99]),
       startDate: faker.date.past(),
       endDate: faker.date.future(),
+      policy: faker.random.alphaNumeric(10),
+      phone: faker.phone.phoneNumber(),
+      imei: faker.random.alphaNumeric(14),
+      owner: faker.random.arrayElement(["AUT", "BGR", "SVN", "HRV"]),
+      contractType: faker.random.arrayElement(["HSI01_1", "HSI01_2", "HSI01_3"]),
       customer: {
-        id: faker.random.alpha(),
-        firstname: faker.name.firstName(),
-        lastname: faker.name.lastName()
+        id: faker.random.alphaNumeric(10),
+        name: faker.name.findName()
       },
       device: {
-        id: faker.random.alpha(),
+        id: faker.random.alphaNumeric(10),
         name: faker.random.arrayElement(["Samsung", "Apple", "Xiamoi"]) + " " + faker.random.alphaNumeric(),
         price: faker.random.number({ min: 100, max: 1000 })
       }

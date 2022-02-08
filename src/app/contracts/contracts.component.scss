@@ -1,3 +1,42 @@
-:host ::ng-deep .p-messages {
-    width: 120px;
+.contract-badge {
+    padding: 5px;
+    margin: 2px;
+    background-color: var(--surface-300);
+    color: var(--surface-700);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.status-onrisk {
+    background-color: var(--orange-300);
+    color: var(--orange-700);
+    font-weight: bold;
+}
+
+.status-cancelled {
+    background-color: var(--purple-300);
+    color: var(--purple-700);
+    font-weight: bold;
+}
+
+.status-ntu {
+    background-color: var(--gray-300);
+    color: var(--gray-700);
+    font-weight: bold;
+}
+
+.status-declined {
+    background-color: var(--teal-300);
+    color: var(--teal-700);
+    font-weight: bold;
+}
+
+#actionbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    input {
+        width: 400px;
+    }
 }
